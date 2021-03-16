@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { IProject } from "./project.interface";
 import { HttpClient } from "@angular/common/http";
-import { API, SEARCH } from "src/app/core/constant";
+import { PROJECTS_SEARCH } from "src/app/core/constant";
 
 @Injectable({ providedIn: "root" })
 export class ProjectService {
@@ -15,6 +15,6 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) {}
 
   searchAll(search: string): Observable<IProject[]> {
-    return this.httpClient.post<IProject[]>(SEARCH, { search });
+    return this.httpClient.post<IProject[]>(PROJECTS_SEARCH, { search });
   }
 }

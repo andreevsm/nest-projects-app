@@ -1,3 +1,4 @@
 export const API = "/api";
 
-export const SEARCH = `${API}/search`;
+export const PROJECTS = "/projects";
+export const PROJECTS_SEARCH = `${API}${PROJECTS}/search`;

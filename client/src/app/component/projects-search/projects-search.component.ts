@@ -6,9 +6,9 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { debounceTime, takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-projects-search",
@@ -23,8 +23,6 @@ export class ProjectsSearchComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject();
 
-  constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {
     this.subscribeToSearch();
   }
@@ -36,7 +34,7 @@ export class ProjectsSearchComponent implements OnInit, OnDestroy {
 
   private subscribeToSearch() {
     this.search.valueChanges
-      .pipe(takeUntil(this.destroy$))
+      .pipe(debounceTime(300), takeUntil(this.destroy$))
       .subscribe((search) => this.changeSearch.emit(search));
   }
 }

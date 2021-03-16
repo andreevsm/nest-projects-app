@@ -1,20 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
+import { IProject } from "../../model/project/project.interface";
 
 @Component({
-  selector: 'app-projects-list',
-  template: `
-    <p>
-      projects-list works!
-    </p>
-  `,
-  styles: [
-  ]
+  selector: "app-projects-list",
+  templateUrl: "./projects-list.component.html",
+  styleUrls: ["./projects-list.component.scss"],
 })
 export class ProjectsListComponent implements OnInit {
+  @Input() projects: IProject[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

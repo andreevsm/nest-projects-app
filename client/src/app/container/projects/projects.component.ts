@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { switchMap } from "rxjs/operators";
-import { ProjectService } from "src/app/model/project/project.service";
+import { IProject } from "../../model/project/project.interface";
+import { ProjectService } from "../../model/project/project.service";
 
 @Component({
   selector: "app-projects",
@@ -12,7 +13,7 @@ import { ProjectService } from "src/app/model/project/project.service";
 export class ProjectsComponent {
   searchChange$ = new Subject<string>();
 
-  projects$ = this.searchChange$.pipe(
+  projects$: Observable<IProject[]> = this.searchChange$.pipe(
     switchMap((search) => this.projectsService.searchAll(search))
   );
 
