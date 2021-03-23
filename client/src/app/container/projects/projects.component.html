@@ -1,12 +1,7 @@
-<div class="projects">
+<app-projects-search
+  (changeSearch)="onChangeSearch($event)"
+></app-projects-search>
 
-  <app-projects-search
-    (changeSearch)="onChangeSearch($event)"
-  ></app-projects-search>
-
-
-  <app-projects-list
-    [projects]="projects$ | async"
-  ></app-projects-list>
-
-</div>
+<app-projects-list
+  [projects]="projects$ | async"
+></app-projects-list>

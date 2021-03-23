@@ -1,0 +1,11 @@
+:host {
+  align-self: center;
+  justify-self: center;
+  width: 30rem;
+}
+
+.form {
+  &__control {
+    width: 100%;
+  }
+}

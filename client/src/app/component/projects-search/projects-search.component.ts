@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { Subject } from "rxjs";
-import { debounceTime, takeUntil } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-projects-search",
@@ -34,7 +34,7 @@ export class ProjectsSearchComponent implements OnInit, OnDestroy {
 
   private subscribeToSearch() {
     this.search.valueChanges
-      .pipe(debounceTime(300), takeUntil(this.destroy$))
+      .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe((search) => this.changeSearch.emit(search));
   }
 }
